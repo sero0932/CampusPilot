@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CampusPilot AI</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">🚀 CampusPilot</div>
+    <button class="nav active" data-section="dashboard">🏠 Dashboard</button>
+    <button class="nav" data-section="academic">🎓 Academic</button>
+    <button class="nav" data-section="ai">🤖 AI Partner</button>
+    <button class="nav" data-section="productivity">✅ Productivity</button>
+    <div class="sidebar-note">Your College Life<br>Operating System</div>
+  </aside>
+
+  <main class="main">
+    <header>
+      <div>
+        <p class="eyebrow">COLLEGE DAILY ASSISTANT</p>
+        <h1 id="pageTitle">Good morning 👋</h1>
+        <p id="dateText"></p>
+      </div>
+      <button class="primary" onclick="openTaskForm()">+ Add Task</button>
+    </header>
+
+    <section id="dashboard" class="section active">
+      <div class="hero">
+        <div>
+          <span class="badge">SMART ENGINE</span>
+          <h2>✨ What should I do now?</h2>
+          <p id="recommendation">Add a task or assignment and CampusPilot will recommend your next action.</p>
+          <button class="primary" onclick="startRecommended()">Start recommended task</button>
+        </div>
+        <div class="hero-icon">🧠</div>
+      </div>
+
+      <div class="cards">
+        <div class="card"><span>📚</span><b id="assignmentCount">0</b><small>Assignments</small></div>
+        <div class="card"><span>✅</span><b id="taskCount">0</b><small>Pending Tasks</small></div>
+        <div class="card"><span>📊</span><b id="attendanceAvg">0%</b><small>Attendance</small></div>
+        <div class="card"><span>⏰</span><b id="urgentCount">0</b><small>Urgent Items</small></div>
+      </div>
+
+      <div class="grid">
+        <div class="panel">
+          <div class="panel-title"><h3>Today's Tasks</h3><button onclick="openTaskForm()">+ Add</button></div>
+          <div id="taskList"></div>
+        </div>
+        <div class="panel">
+          <div class="panel-title"><h3>Today's Classes</h3><button onclick="showSection('academic')">Manage</button></div>
+          <div id="todayClasses"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="academic" class="section">
+      <div class="section-head"><div><h2>🎓 Academic Hub</h2><p>Manage subjects, attendance and assignments.</p></div></div>
+      <div class="grid">
+        <div class="panel">
+          <div class="panel-title"><h3>Attendance</h3><button onclick="addAttendance()">+ Subject</button></div>
+          <div id="attendanceList"></div>
+        </div>
+        <div class="panel">
+          <div class="panel-title"><h3>Assignments</h3><button onclick="addAssignment()">+ Assignment</button></div>
+          <div id="assignmentList"></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-title"><h3>Timetable</h3><button onclick="addClass()">+ Class</button></div>
+        <div id="timetableList"></div>
+      </div>
+    </section>
+
+    <section id="ai" class="section">
+      <div class="section-head"><div><h2>🤖 AI Daily Partner</h2><p>Rule-based smart planning prototype. Real AI can be connected later.</p></div></div>
+      <div class="ai-box">
+        <div class="ai-message" id="aiMessage">Tell me what you need to do, or ask: “What should I do now?”</div>
+        <div class="quick"><button onclick="askAI('What should I do now?')">What should I do now?</button><button onclick="askAI('Plan my day')">Plan my day</button><button onclick="askAI('Show urgent work')">Show urgent work</button></div>
+        <div class="chat-row"><input id="aiInput" placeholder="Type your request..."><button class="primary" onclick="sendAI()">Ask</button></div>
+      </div>
+    </section>
+
+    <section id="productivity" class="section">
+      <div class="section-head"><div><h2>✅ Productivity</h2><p>Tasks, focus sessions and daily goals.</p></div><button class="primary" onclick="openTaskForm()">+ Add Task</button></div>
+      <div class="panel">
+        <div class="panel-title"><h3>All Tasks</h3><span id="progressText"></span></div>
+        <div id="allTasks"></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="modal" id="taskModal">
+  <div class="modal-card">
+    <button class="close" onclick="closeTaskForm()">×</button>
+    <h2>Add Task</h2>
+    <input id="taskTitle" placeholder="Task title">
+    <input id="taskDeadline" type="date">
+    <select id="taskPriority"><option>High</option><option selected>Medium</option><option>Low</option></select>
+    <button class="primary full" onclick="saveTask()">Save Task</button>
+  </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
